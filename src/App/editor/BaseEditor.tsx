@@ -1,20 +1,12 @@
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { ReactCodeMirrorProps, ReactCodeMirrorRef } from "@uiw/react-codemirror";
 import React, { FC } from "react";
 
-interface Props {
-    value?: string;
-    onChange?: (value: string) => void;
-    extensions?: any[];
-}
+export type BaseEditorProps = ReactCodeMirrorProps & React.RefAttributes<ReactCodeMirrorRef>;
 
-const BaseEditor: FC<Props> = ({ value, onChange, extensions }) => {
+const BaseEditor: FC<BaseEditorProps> = (props) => {
 
     return (
-        <CodeMirror
-            value={value}
-            onChange={onChange}
-            extensions={extensions}
-        />
+        <CodeMirror {...props} />
     );
 };
 

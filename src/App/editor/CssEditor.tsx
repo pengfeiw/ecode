@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import { CssContext } from "../context";
-import BaseEditor from "./BaseEditor";
+import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 
-const CssEditor = () => {
-    const {value: cssText, setter: setCssText} = useContext(CssContext)
+const CssEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
+    const {value: cssText, setter: setCssText} = useContext(CssContext);
 
-    return <BaseEditor value={cssText} onChange={setCssText} />
+    return <BaseEditor value={cssText} onChange={setCssText} {...props} />;
 };
 
 export default CssEditor;

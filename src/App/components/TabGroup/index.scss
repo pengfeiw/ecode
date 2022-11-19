@@ -1,0 +1,30 @@
+$tab-border: 1px solid lightgray;
+
+.tab-group {
+    display        : flex;
+    justify-content: center;
+
+    .tab {
+        background-color: #d9ebf5;
+        padding         : 10px 12px;
+        cursor          : pointer;
+        border-right    : $tab-border;
+        border-top      : $tab-border;
+        border-bottom   : $tab-border;
+
+        &:hover {
+            background-color: #a8c8d7;
+        }
+
+        &:first-child {
+            border-top-left-radius   : 8px;
+            border-bottom-left-radius: 8px;
+            border-left              : $tab-border;
+        }
+
+        &:last-child {
+            border-top-right-radius   : 8px;
+            border-bottom-right-radius: 8px;
+        }
+    }
+}

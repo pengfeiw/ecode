@@ -1,9 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import EditorTest from "./App/index";
+import ECode from "./App/index";
 
 const App = () => {
-    return <EditorTest />;
+    return <ECode />;
 };
 
 const container = document.getElementById("root");

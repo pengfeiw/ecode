@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import { HtmlContext } from "../context";
-import BaseEditor from "./BaseEditor";
+import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 
-const HtmlEditor = () => {
-    const {value: htmlText, setter: setHtmlText} = useContext(HtmlContext)
+const HtmlEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
+    const {value: htmlText, setter: setHtmlText} = useContext(HtmlContext);
 
-    return <BaseEditor value={htmlText} onChange={setHtmlText} />
+    return <BaseEditor {...props} value={htmlText} onChange={setHtmlText} />;
 };
 
 export default HtmlEditor;

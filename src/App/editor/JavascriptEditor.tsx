@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, FC } from "react";
 import { JavascriptContext } from "../context";
-import BaseEditor from "./BaseEditor";
+import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 
-const JavascriptEditor = () => {
-    const {value: javascriptText, setter: setJavascriptText} = useContext(JavascriptContext)
+const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
+    const {value: javascriptText, setter: setJavascriptText} = useContext(JavascriptContext);
 
-    return <BaseEditor value={javascriptText} onChange={setJavascriptText} />
+    return <BaseEditor value={javascriptText} onChange={setJavascriptText} {...props} />;
 };
 
 export default JavascriptEditor;
