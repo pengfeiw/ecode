@@ -2,10 +2,15 @@
 
 .base-editor {
     .base-editor-title {
-        color           : $color;
+        color           : $color-2;
         display         : flex;
         align-items     : center;
         padding-left    : 5px;
         background-color: $bg-color-3;
+        color           : white;
+    }
+
+    .cm-editor {
+        background-color: #f7f7f7;
     }
 }

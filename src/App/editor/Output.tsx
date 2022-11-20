@@ -24,7 +24,7 @@ const Output = () => {
 
     return (
         <div className="base-editor">
-            <div className="base-editor-title" style={{ height: "40px" }}>Output</div>
+            <div className="base-editor-title" style={{ height: "40px", color: "white" }}>Output</div>
             <iframe
                 title="Output"
                 sandbox="allow-scripts allow-modals allow-forms"
@@ -33,7 +33,8 @@ const Output = () => {
                 style={{
                     width: "100%",
                     border: "none",
-                    height: "calc(100% - 40px)"
+                    height: "calc(100% - 40px)",
+                    background: "#f7f7f7"
                 }}
             />
         </div>

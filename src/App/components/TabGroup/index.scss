@@ -6,28 +6,17 @@ $tab-border: 1px solid $border-color-1;
     display        : flex;
     justify-content: center;
     margin         : 10px 0;
+    column-gap     : 4px;
 
     .tab {
         background-color: $bg-color-2;
         padding         : 10px 12px;
         cursor          : pointer;
-        border-right    : $tab-border;
-        border-top      : $tab-border;
-        border-bottom   : $tab-border;
+        border-radius   : $border-radius-1;
+        color           : $color-1;
 
         &:hover {
             background-color: $bg-color-hover-2;
-        }
-
-        &:first-child {
-            border-top-left-radius   : $border-radius-1;
-            border-bottom-left-radius: $border-radius-1;
-            border-left              : $tab-border;
-        }
-
-        &:last-child {
-            border-top-right-radius   : $border-radius-1;
-            border-bottom-right-radius: $border-radius-1;
         }
     }
 }

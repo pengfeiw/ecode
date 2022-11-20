@@ -1,9 +1,7 @@
 @import "../../var.scss";
 
 .split-view {
-    width        : 100%;
-    border       : 4px dashed $border-color-2;
-    border-radius: $border-radius-2;
+    width: 100%;
 
     .split {
         display       : flex;
@@ -11,8 +9,12 @@
         height        : 100%;
     }
 
+    .split-view-pane {
+        border-radius: $border-radius-1;
+        overflow     : hidden;
+    }
+
     .gutter {
-        background-color   : #eee;
         background-repeat  : no-repeat;
         background-position: 50%;
     }

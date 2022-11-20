@@ -1,11 +1,13 @@
+@import "./var.scss";
+
 .ecode {
-    display       : flex;
-    flex-direction: column;
-    height        : 300px;
+    display         : flex;
+    flex-direction  : column;
+    height          : 300px;
 
     .ecode-content {
         display    : flex;
         flex-shrink: 1;
-        height: calc(100% - 62px)
+        height     : calc(100% - 62px)
     }
 }
