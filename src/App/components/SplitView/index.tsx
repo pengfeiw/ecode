@@ -1,28 +1,26 @@
 import React, { FC } from "react";
 import Split from "react-split";
 import "./index.scss";
+import { Panel } from "../../index";
 
 interface Props {
-    panes: {
-        key: number | string,
-        ele: React.ReactElement
-    }[];
+    panes: Pick<Panel, "ele" | "key" | "visible">[];
 }
 
 /**
  * Resizable split views
  */
 const SplitView: FC<Props> = ({ panes }) => {
+    const filterPanes = panes.filter((pane) => pane.visible);
+
     return (
         <div className="split-view">
-            <Split className="split">
+            <Split className="split" key={filterPanes.length}>
                 {
-                    panes.map((pane) => (
-                        <React.Fragment key={pane.key}>
-                            <div className="split-view-pane">
-                                {pane.ele}
-                            </div>
-                        </React.Fragment>
+                    filterPanes.map((pane) => (
+                        <div className="split-view-pane" key={pane.key}>
+                            {pane.ele}
+                        </div>
                     ))
                 }
             </Split>

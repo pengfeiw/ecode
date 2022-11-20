@@ -9,11 +9,19 @@ $tab-border: 1px solid $border-color-1;
     column-gap     : 4px;
 
     .tab {
-        background-color: $bg-color-2;
-        padding         : 10px 12px;
-        cursor          : pointer;
-        border-radius   : $border-radius-1;
-        color           : $color-1;
+        padding      : 10px 12px;
+        cursor       : pointer;
+        border-radius: $border-radius-1;
+
+        &.tab-visible {
+            color           : $color-1;
+            background-color: $bg-color-2;
+        }
+
+        &.tab-hidden {
+            color           : black;
+            background-color: $bg-color-1;
+        }
 
         &:hover {
             background-color: $bg-color-hover-2;
