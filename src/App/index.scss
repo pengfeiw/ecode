@@ -1,5 +1,11 @@
 .ecode {
+    display       : flex;
+    flex-direction: column;
+    height        : 300px;
+
     .ecode-content {
-        display: flex;
+        display    : flex;
+        flex-shrink: 1;
+        height: calc(100% - 62px)
     }
 }

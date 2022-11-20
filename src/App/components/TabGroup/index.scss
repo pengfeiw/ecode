@@ -1,11 +1,14 @@
-$tab-border: 1px solid lightgray;
+@import "../../var.scss";
+
+$tab-border: 1px solid $border-color-1;
 
 .tab-group {
     display        : flex;
     justify-content: center;
+    margin         : 10px 0;
 
     .tab {
-        background-color: #d9ebf5;
+        background-color: $bg-color-2;
         padding         : 10px 12px;
         cursor          : pointer;
         border-right    : $tab-border;
@@ -13,18 +16,18 @@ $tab-border: 1px solid lightgray;
         border-bottom   : $tab-border;
 
         &:hover {
-            background-color: #a8c8d7;
+            background-color: $bg-color-hover-2;
         }
 
         &:first-child {
-            border-top-left-radius   : 8px;
-            border-bottom-left-radius: 8px;
+            border-top-left-radius   : $border-radius-1;
+            border-bottom-left-radius: $border-radius-1;
             border-left              : $tab-border;
         }
 
         &:last-child {
-            border-top-right-radius   : 8px;
-            border-bottom-right-radius: 8px;
+            border-top-right-radius   : $border-radius-1;
+            border-bottom-right-radius: $border-radius-1;
         }
     }
 }

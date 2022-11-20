@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CssContext, HtmlContext, JavascriptContext } from "../context";
+import "./BaseEditor.scss";
 
 const Output = () => {
     const { value: htmlText } = useContext(HtmlContext);
@@ -22,18 +23,20 @@ const Output = () => {
     }, [htmlText, cssText, javascriptText]);
 
     return (
-        <iframe
-            title="output"
-            sandbox="allow-scripts allow-modals allow-forms"
-            frameBorder="1"
-            srcDoc={srcDoc}
-            style={{
-                width: "100%",
-                border: "none",
-                height: "100%",
-                minHeight: "300px"
-            }}
-        />
+        <div className="base-editor">
+            <div className="base-editor-title" style={{ height: "40px" }}>Output</div>
+            <iframe
+                title="Output"
+                sandbox="allow-scripts allow-modals allow-forms"
+                frameBorder="1"
+                srcDoc={srcDoc}
+                style={{
+                    width: "100%",
+                    border: "none",
+                    height: "calc(100% - 40px)"
+                }}
+            />
+        </div>
     );
 };
 

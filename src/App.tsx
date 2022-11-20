@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import ECode from "./App/index";
 
 const App = () => {
-    return <ECode />;
+    return <ECode style={{height: "100%"}}/>;
 };
 
 const container = document.getElementById("root");

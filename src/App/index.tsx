@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import useEffectState from "../hooks/useEffectState";
 import { HtmlContext, CssContext, JavascriptContext } from "./context";
 import JavascriptEditor from "./editor/JavascriptEditor";
@@ -9,7 +9,7 @@ import TabGroup, { Tab } from "./components/TabGroup";
 import SplitView from "./components/SplitView";
 import "./index.scss";
 
-export interface Props {
+export interface Props extends HTMLAttributes<HTMLDivElement>{
     html?: string;
     css?: string;
     javascript?: string;
@@ -18,7 +18,8 @@ export interface Props {
 const App: FC<Props> = ({
     html = "",
     css = "",
-    javascript = ""
+    javascript = "",
+    ...props
 }) => {
     const [htmlText, setHtmlText] = useEffectState<string>(html);
     const [cssText, setCssText] = useEffectState<string>(css);
@@ -27,15 +28,19 @@ const App: FC<Props> = ({
     const tabs: Tab[] = [
         {
             key: 0,
-            title: "html"
+            title: "HTML"
         },
         {
             key: 1,
-            title: "css",
+            title: "CSS",
         },
         {
             key: 2,
-            title: "javascript"
+            title: "JavaScript"
+        },
+        {
+            key: 3,
+            title: "Output"
         }
     ];
 
@@ -43,17 +48,17 @@ const App: FC<Props> = ({
         <HtmlContext.Provider value={{value: htmlText, setter: setHtmlText}}>
             <CssContext.Provider value={{value: cssText, setter: setCssText}}>
                 <JavascriptContext.Provider value={{value: javascriptText, setter: setJavaScriptText}}>
-                    <div className="ecode">
+                    <div className="ecode" {...props}>
                         <div className="ecode-header">
                             <TabGroup tabs={tabs} />
                         </div>
                         <div className="ecode-content">
                             <SplitView
                                 panes={[
-                                    {key: "html", ele: <HtmlEditor />},
-                                    {key: "css", ele: <CssEditor />},
-                                    {key: "js", ele: <JavascriptEditor />},
-                                    {key: "output", ele: <Output />}
+                                    {key: "HTML", ele: <HtmlEditor />},
+                                    {key: "CSS", ele: <CssEditor />},
+                                    {key: "JavaScript", ele: <JavascriptEditor />},
+                                    {key: "Output", ele: <Output />}
                                 ]}
                             />
                         </div>

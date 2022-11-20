@@ -1,14 +1,24 @@
-.split-view {
-    display: flex;
-    width  : 100%;
+@import "../../var.scss";
 
-    .split-view-pane {
-        flex: 1 1 0%;
+.split-view {
+    width        : 100%;
+    border       : 4px dashed $border-color-2;
+    border-radius: $border-radius-2;
+
+    .split {
+        display       : flex;
+        flex-direction: row;
+        height        : 100%;
     }
 
-    .split-view-divider {
+    .gutter {
+        background-color   : #eee;
+        background-repeat  : no-repeat;
+        background-position: 50%;
+    }
+
+    .gutter.gutter-horizontal {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
         cursor          : col-resize;
-        width           : 1px;
-        background-color: gray;
     }
 }

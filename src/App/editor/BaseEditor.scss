@@ -1,0 +1,11 @@
+@import "../var.scss";
+
+.base-editor {
+    .base-editor-title {
+        color           : $color;
+        display         : flex;
+        align-items     : center;
+        padding-left    : 5px;
+        background-color: $bg-color-3;
+    }
+}

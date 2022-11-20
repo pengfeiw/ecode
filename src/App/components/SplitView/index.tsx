@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
+import Split from "react-split";
 import "./index.scss";
 
 interface Props {
@@ -8,30 +9,23 @@ interface Props {
     }[];
 }
 
-class Divider extends React.Component<{}> {
-    private dividerRef = React.createRef<HTMLDivElement>();
-
-    render() {
-        return <div ref={this.dividerRef} className="split-view-divider"></div>;
-    }
-}
-
 /**
  * Resizable split views
  */
 const SplitView: FC<Props> = ({ panes }) => {
     return (
         <div className="split-view">
-            {
-                panes.map((pane, index) => (
-                    <React.Fragment key={pane.key}>
-                        <div className="split-view-pane">
-                            {pane.ele}
-                        </div>
-                        {index !== panes.length - 1 ? <Divider /> : null}
-                    </React.Fragment>
-                ))
-            }
+            <Split className="split">
+                {
+                    panes.map((pane) => (
+                        <React.Fragment key={pane.key}>
+                            <div className="split-view-pane">
+                                {pane.ele}
+                            </div>
+                        </React.Fragment>
+                    ))
+                }
+            </Split>
         </div>
     );
 };
