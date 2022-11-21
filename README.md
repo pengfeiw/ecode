@@ -8,4 +8,4 @@ A online code editor for web develop. Try it [here](https://pengfeiw.github.io/e
 
 - `yarn install`
 - `yarn start`
-- open `[localhost:9000](http://localhost:9000)`
+- open [`localhost:9000`](http://localhost:9000)
