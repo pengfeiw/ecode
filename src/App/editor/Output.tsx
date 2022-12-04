@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CssContext, HtmlContext, JavascriptContext } from "../context";
+import { CssContext, HtmlContext, JavaScriptContext } from "../context";
 import "./BaseEditor.scss";
 
 const Output = () => {
     const { value: htmlText } = useContext(HtmlContext);
     const { value: cssText } = useContext(CssContext);
-    const { value: javascriptText } = useContext(JavascriptContext);
+    const { value: javascriptText } = useContext(JavaScriptContext);
     const [srcDoc, setSrcDoc] = useState<string>("");
 
     useEffect(() => {

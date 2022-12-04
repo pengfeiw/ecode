@@ -1,25 +1,19 @@
-import React, { FC, HTMLAttributes, useState } from "react";
+import React, { FC, HTMLAttributes, useEffect, useLayoutEffect, useState } from "react";
 import useEffectState from "../hooks/useEffectState";
-import { HtmlContext, CssContext, JavascriptContext } from "./context";
+import { HtmlContext, CssContext, JavaScriptContext, PanelContext, Panel } from "./context";
 import JavascriptEditor from "./editor/JavascriptEditor";
 import CssEditor from "./editor/CssEditor";
 import HtmlEditor from "./editor/HtmlEditor";
 import Output from "./editor/Output";
 import TabGroup from "./components/TabGroup";
 import SplitView from "./components/SplitView";
+import SyntaxConvert from "./editor/SyntaxConvert/SyntaxConvert";
 import "./index.scss";
 
-export interface Props extends HTMLAttributes<HTMLDivElement>{
+export interface Props extends HTMLAttributes<HTMLDivElement> {
     html?: string;
     css?: string;
     javascript?: string;
-}
-
-export interface Panel {
-    key: number | string;
-    title: string;
-    ele: React.ReactElement;
-    visible: boolean;
 }
 
 
@@ -61,6 +55,15 @@ const App: FC<Props> = ({
     const [javascriptText, setJavaScriptText] = useEffectState<string>(javascript);
     const [panels, setPanels] = useState<Panel[]>(defaultPanels);
 
+    useLayoutEffect(() => {
+        SyntaxConvert.contexts = {
+            HtmlContext: {value: htmlText, setter: setHtmlText},
+            CssContext: {value: cssText, setter: setCssText},
+            JavaScriptContext: {value: javascriptText, setter: setJavaScriptText},
+            PanelContext: {value: panels, setter: setPanels}
+        }
+    }, [htmlText, setHtmlText, cssText, setCssText, javascriptText, setJavaScriptText, panels, setPanels]);
+
     const tabClick = (key: string | number) => {
         const newPanels = [...panels];
         const index = panels.findIndex((pane) => pane.key === key);
@@ -71,20 +74,22 @@ const App: FC<Props> = ({
     };
 
     return (
-        <HtmlContext.Provider value={{value: htmlText, setter: setHtmlText}}>
-            <CssContext.Provider value={{value: cssText, setter: setCssText}}>
-                <JavascriptContext.Provider value={{value: javascriptText, setter: setJavaScriptText}}>
-                    <div className="ecode" {...props}>
-                        <div className="ecode-header">
-                            <TabGroup tabs={panels} tabClick={tabClick} />
+        <HtmlContext.Provider value={{ value: htmlText, setter: setHtmlText }}>
+            <CssContext.Provider value={{ value: cssText, setter: setCssText }}>
+                <JavaScriptContext.Provider value={{ value: javascriptText, setter: setJavaScriptText }}>
+                    <PanelContext.Provider value={{ value: panels, setter: setPanels }}>
+                        <div className="ecode" {...props}>
+                            <div className="ecode-header">
+                                <TabGroup tabs={panels} tabClick={tabClick} />
+                            </div>
+                            <div className="ecode-content">
+                                <SplitView
+                                    panes={panels}
+                                />
+                            </div>
                         </div>
-                        <div className="ecode-content">
-                            <SplitView
-                                panes={panels}
-                            />
-                        </div>
-                    </div>
-                </JavascriptContext.Provider>
+                    </PanelContext.Provider>
+                </JavaScriptContext.Provider>
             </CssContext.Provider>
         </HtmlContext.Provider>
     );

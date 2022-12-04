@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Split from "react-split";
 import "./index.scss";
-import { Panel } from "../../index";
+import { Panel } from "../../context";
 
 interface Props {
     panes: Pick<Panel, "ele" | "key" | "visible">[];

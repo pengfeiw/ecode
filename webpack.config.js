@@ -29,6 +29,10 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
+            },
+            {
+                test: /\.txt$/i,
+                use: 'raw-loader'
             }
         ]
     },

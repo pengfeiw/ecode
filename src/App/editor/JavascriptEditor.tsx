@@ -1,5 +1,5 @@
-import React, { useContext, useState, FC } from "react";
-import { JavascriptContext } from "../context";
+import React, { useContext, useState, FC, useEffect } from "react";
+import { JavaScriptContext, PanelContext } from "../context";
 import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 import { javascript } from '@codemirror/lang-javascript';
 import ReactConvert from "./SyntaxConvert/ReactConvert";
@@ -20,13 +20,19 @@ const getConvert = (lang: JSLang) => {
 };
 
 const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
-    const { value: javascriptText, setter: setJavascriptText } = useContext(JavascriptContext);
+    const javascriptContext = useContext(JavaScriptContext);
+    const panelContext = useContext(PanelContext);
+    const { value: javascriptText, setter: setJavascriptText } = javascriptContext;
     const [lang, setLang] = useState<JSLang>("React");
     const [langConvert] = useEffectState<JSLang, SyntaxConvert>(lang, getConvert);
 
     const onChange = (value: string) => {
         setJavascriptText(langConvert.convert(value));
     };
+
+    useEffect(() => {
+        langConvert.init();
+    }, [langConvert]);
 
     return (
         <BaseEditor
