@@ -1,0 +1,14 @@
+.dropdown {
+    .dropdown-title {
+        cursor: pointer;
+    }
+
+    .dropdown-list {
+        display: flex;
+        flex-direction: column;
+
+        .dropdown-list-item {
+            cursor: pointer;
+        }
+    }
+}
