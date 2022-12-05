@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useEffect, useLayoutEffect, useState } from "react";
+import React, { FC, HTMLAttributes, useLayoutEffect, useState } from "react";
 import useEffectState from "../hooks/useEffectState";
 import { HtmlContext, CssContext, JavaScriptContext, PanelContext, Panel } from "./context";
 import JavascriptEditor from "./editor/JavascriptEditor";
@@ -53,14 +53,19 @@ const App: FC<Props> = ({
     const [htmlText, setHtmlText] = useEffectState<string>(html);
     const [cssText, setCssText] = useEffectState<string>(css);
     const [javascriptText, setJavaScriptText] = useEffectState<string>(javascript);
+
+    const [htmlRealText, setHtmlRealText] = useState<string>("");
+    const [jsRealText, setJsRealText] = useState<string>("");
+    const [cssRealText, setCssRealText] = useState<string>("");
+
     const [panels, setPanels] = useState<Panel[]>(defaultPanels);
 
     useLayoutEffect(() => {
         SyntaxConvert.contexts = {
-            HtmlContext: {value: htmlText, setter: setHtmlText},
-            CssContext: {value: cssText, setter: setCssText},
-            JavaScriptContext: {value: javascriptText, setter: setJavaScriptText},
-            PanelContext: {value: panels, setter: setPanels}
+            HtmlContext: { value: htmlText, setter: setHtmlText },
+            CssContext: { value: cssText, setter: setCssText },
+            JavaScriptContext: { value: javascriptText, setter: setJavaScriptText },
+            PanelContext: { value: panels, setter: setPanels }
         }
     }, [htmlText, setHtmlText, cssText, setCssText, javascriptText, setJavaScriptText, panels, setPanels]);
 
@@ -74,9 +79,9 @@ const App: FC<Props> = ({
     };
 
     return (
-        <HtmlContext.Provider value={{ value: htmlText, setter: setHtmlText }}>
-            <CssContext.Provider value={{ value: cssText, setter: setCssText }}>
-                <JavaScriptContext.Provider value={{ value: javascriptText, setter: setJavaScriptText }}>
+        <HtmlContext.Provider value={{ value: htmlText, setter: setHtmlText, realValue: htmlRealText, realValueSetter: setHtmlRealText }}>
+            <CssContext.Provider value={{ value: cssText, setter: setCssText, realValue: cssRealText, realValueSetter: setCssRealText }}>
+                <JavaScriptContext.Provider value={{ value: javascriptText, setter: setJavaScriptText, realValue: jsRealText, realValueSetter: setJsRealText }}>
                     <PanelContext.Provider value={{ value: panels, setter: setPanels }}>
                         <div className="ecode" {...props}>
                             <div className="ecode-header">

@@ -7,12 +7,18 @@ export interface ContextType<T> {
 
 export interface LangContextType<T = string> extends ContextType<T> {
     realValue: T;
+    realValueSetter: (value: T) => void;
 }
 
+/**
+ * value: 显示在屏幕上的 text
+ * realValue: value 经过 SyntaxConvert 转换后的 text
+ */
 const defaultLangContext = {
     value: "",
     realValue: "",
-    setter: (v: string) => { }
+    setter: (v: string) => { },
+    realValueSetter: (v: string) => { }
 };
 
 export interface Panel {

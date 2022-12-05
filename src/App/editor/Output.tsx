@@ -3,9 +3,9 @@ import { CssContext, HtmlContext, JavaScriptContext } from "../context";
 import "./BaseEditor.scss";
 
 const Output = () => {
-    const { value: htmlText } = useContext(HtmlContext);
-    const { value: cssText } = useContext(CssContext);
-    const { value: javascriptText } = useContext(JavaScriptContext);
+    const { realValue: htmlText } = useContext(HtmlContext);
+    const { realValue: cssText } = useContext(CssContext);
+    const { realValue: javascriptText } = useContext(JavaScriptContext);
     const [srcDoc, setSrcDoc] = useState<string>("");
 
     useEffect(() => {

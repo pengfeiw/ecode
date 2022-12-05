@@ -21,18 +21,22 @@ const getConvert = (lang: JSLang) => {
 
 const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
     const javascriptContext = useContext(JavaScriptContext);
-    const panelContext = useContext(PanelContext);
-    const { value: javascriptText, setter: setJavascriptText } = javascriptContext;
+    const { value: javascriptText, setter: setJavascriptText, realValueSetter: setJavascriptRealText } = javascriptContext;
     const [lang, setLang] = useState<JSLang>("React");
     const [langConvert] = useEffectState<JSLang, SyntaxConvert>(lang, getConvert);
 
     const onChange = (value: string) => {
-        setJavascriptText(langConvert.convert(value));
+        setJavascriptText(value);
     };
 
     useEffect(() => {
         langConvert.init();
     }, [langConvert]);
+
+    useEffect(() => {
+        const realValue = langConvert.convert(javascriptText);
+        setJavascriptRealText(realValue);
+    }, [javascriptText]);
 
     return (
         <BaseEditor

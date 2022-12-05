@@ -1,10 +1,14 @@
-import React, { useContext, FC } from "react";
+import React, { useContext, FC, useEffect } from "react";
 import { CssContext } from "../context";
 import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 import { css } from "@codemirror/lang-css";
 
 const CssEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
-    const { value: cssText, setter: setCssText } = useContext(CssContext);
+    const { value: cssText, setter: setCssText, realValueSetter: setCssRealText } = useContext(CssContext);
+
+    useEffect(() => {
+        setCssRealText(cssText);
+    }, [cssText]);
 
     return (
         <BaseEditor

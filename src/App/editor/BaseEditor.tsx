@@ -7,6 +7,7 @@ export type BaseEditorProps = {title?: string} & ReactCodeMirrorProps & React.Re
 const BaseEditor: FC<BaseEditorProps> = (props) => {
     const { title } = props;
 
+    console.log(props.value);
     return (
         <div className="base-editor" style={{height: "100%"}}>
             {title ? <div className="base-editor-title" style={{height:"40px"}}>{title}</div> : null}
