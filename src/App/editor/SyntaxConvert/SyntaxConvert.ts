@@ -6,7 +6,10 @@ class SyntaxConvert {
         return str;
     }
 
-    init() {}
+    init() {
+        SyntaxConvert.contexts.HtmlContext.setter("");
+        SyntaxConvert.contexts.JavaScriptContext.setter("");
+    }
 }
 
 export default SyntaxConvert;

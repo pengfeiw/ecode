@@ -3,7 +3,7 @@ import { HtmlContext } from "../context";
 import BaseEditor, { BaseEditorProps } from "./BaseEditor";
 import { html } from '@codemirror/lang-html';
 
-const HtmlEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
+const HtmlEditor: FC<Omit<BaseEditorProps, "value" | "onChange" | "langs" | "curLangKey">> = (props) => {
     const { value: htmlText, setter: setHtmlText, realValueSetter: setHtmlRealText } = useContext(HtmlContext);
 
     useEffect(() => {
@@ -12,7 +12,8 @@ const HtmlEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
 
     return (
         <BaseEditor
-            title="HTML"
+            langs={[{ key: "HTML", value: "HTML" }]}
+            curLangKey="HTML"
             {...props}
             value={htmlText}
             onChange={setHtmlText}

@@ -2,7 +2,7 @@ import React, { FC, useLayoutEffect, useState } from "react";
 import useToggle from "../../../hooks/useToggle";
 import "./index.scss";
 
-interface DropDownItem {
+export interface DropDownItem {
     key: string | number;
     value: string;
 }
@@ -10,9 +10,10 @@ interface DropDownItem {
 interface Props {
     items: DropDownItem[];
     selectedKey: string | number;
+    onChange?: (key: string | number, value?: string) => void;
 }
 
-const DropDown: FC<Props> = ({ items, selectedKey }) => {
+const DropDown: FC<Props> = ({ items, selectedKey, onChange }) => {
     const [selectedItem, setSelectedItem] = useState<DropDownItem>();
     const [dropdownActive, toggleDropDowndownActive] = useToggle();
 
@@ -24,6 +25,13 @@ const DropDown: FC<Props> = ({ items, selectedKey }) => {
         setSelectedItem(selected);
     }, [items, selectedKey]);
 
+    const itemClick = (key: string | number, value: string) => {
+        toggleDropDowndownActive();
+        if (onChange) {
+            onChange(key, value);
+        }
+    }
+
     return (
         <div className="dropdown">
             <span className="dropdown-title" onClick={toggleDropDowndownActive}>{selectedItem?.value}</span>
@@ -31,9 +39,15 @@ const DropDown: FC<Props> = ({ items, selectedKey }) => {
                 dropdownActive ? (
                     <div className="dropdown-list">
                     {
-                        items.map((item) => (
-                            <span className="dropdown-list-item" key={item.key}>{item.value}</span>
-                        ))
+                            items.map((item) => (
+                                <span
+                                    className="dropdown-list-item"
+                                    key={item.key}
+                                    onClick={() => itemClick(item.key, item.value)}
+                                >
+                                    {item.value}
+                                </span>
+                            ))
                     }
                     </div>
                 ) : null

@@ -1,2 +1,3 @@
-1. LangContext 的 value 和 realValue 没有区分开来
-2. 切换语法组件
+1. LangContext 的 value 和 realValue 没有区分开来A （已完成）
+2. 切换语法组件（功能已经完成，样式待修改）
+3. 整理组件，抽取公共部分

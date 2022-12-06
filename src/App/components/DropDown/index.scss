@@ -1,4 +1,11 @@
+@import "../../var.scss";
+
 .dropdown {
+    display: inline-block;
+    position: relative;
+    background-color: $bg-color-3;
+    color: white;
+
     .dropdown-title {
         cursor: pointer;
     }
@@ -6,6 +13,12 @@
     .dropdown-list {
         display: flex;
         flex-direction: column;
+        row-gap: 10px;
+        position: absolute;
+        background-color: $bg-color-3;
+        z-index: 1;
+        padding: 10px;
+        margin-left: -10px;
 
         .dropdown-list-item {
             cursor: pointer;

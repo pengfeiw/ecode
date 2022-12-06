@@ -19,7 +19,7 @@ const getConvert = (lang: JSLang) => {
     }
 };
 
-const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props) => {
+const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange" | "langs" | "curLangKey">> = (props) => {
     const javascriptContext = useContext(JavaScriptContext);
     const { value: javascriptText, setter: setJavascriptText, realValueSetter: setJavascriptRealText } = javascriptContext;
     const [lang, setLang] = useState<JSLang>("React");
@@ -38,9 +38,15 @@ const JavascriptEditor: FC<Omit<BaseEditorProps, "value" | "onChange">> = (props
         setJavascriptRealText(realValue);
     }, [javascriptText]);
 
+    const langChange = (key: string) => {
+        setLang(key as JSLang);
+    };
+
     return (
         <BaseEditor
-            title={lang}
+            langs={[{key: "JavaScript", value: "JavaScript"}, {key: "React", value: "React"}]}
+            curLangKey={lang}
+            onLangChange={langChange}
             value={javascriptText}
             onChange={onChange}
             extensions={[javascript({ jsx: true })]}
